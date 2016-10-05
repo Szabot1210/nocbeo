@@ -1,4 +1,4 @@
-# NOCBEO
+# NOCBEO [![Build Status](https://travis-ci.org/szaboadamtamas/nocbeo.svg?branch=master)](https://travis-ci.org/szaboadamtamas/nocbeo)
 
 ## Build the project
 
