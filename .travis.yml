@@ -9,3 +9,10 @@ install:
   - bower install
 script:
   - gulp build
+
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: rsync -r --delete-after $TRAVIS_BUILD_DIR/dist $RSYNC_USER@$HOST:$RSYNC_FOLDER
+  on:
+    branch: master
