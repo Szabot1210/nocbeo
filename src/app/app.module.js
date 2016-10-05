@@ -11,7 +11,6 @@
     'ng.deviceDetector',
     'ngTouch',
     'pascalprecht.translate',
-    'duScroll',
 
     'nocbeo-utils',
     'nocbeo-ui',

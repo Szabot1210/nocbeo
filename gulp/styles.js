@@ -18,8 +18,7 @@ module.exports = function(options) {
 
     var injectFiles = gulp.src([
       options.src + '/styles/**/*.less',
-      '!' + options.src + '/styles/index.less',
-      '!' + options.src + '/styles/vendor.less'
+      '!' + options.src + '/styles/index.less'
     ], { read: false });
 
     var injectOptions = {
@@ -33,18 +32,14 @@ module.exports = function(options) {
     };
 
     var indexFilter = $.filter('index.less');
-    var vendorFilter = $.filter('vendor.less');
 
     return gulp.src([
-      options.src + '/styles/index.less',
-      options.src + '/styles/vendor.less'
+      options.src + '/styles/index.less'
     ])
       .pipe(indexFilter)
       .pipe($.inject(injectFiles, injectOptions))
       .pipe(indexFilter.restore())
-      .pipe(vendorFilter)
       .pipe(wiredep(options.wiredep))
-      .pipe(vendorFilter.restore())
       .pipe($.sourcemaps.init())
       .pipe($.less(lessOptions)).on('error', options.errorHandler('Less'))
       .pipe($.autoprefixer()).on('error', options.errorHandler('Autoprefixer'))

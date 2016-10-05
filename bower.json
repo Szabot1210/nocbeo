@@ -10,7 +10,6 @@
     "pace": "^1.0.2",
     "toastr": "~2.1.2",
     "ng-multi-transclude": "~0.1.5",
-    "SpinKit": "spinkit#~1.2.5",
     "animate.css": "~3.4.0",
     "ngstorage": "^0.3.10",
     "ng-device-detector": "^3.0.1",
@@ -21,8 +20,7 @@
     "angular-touch": "~1.5.8",
     "moment": "^2.15.1",
     "papaparse": "^4.1.2",
-    "angular-translate": "^2.12.1",
-    "angular-scroll": "^1.0.0"
+    "angular-translate": "^2.12.1"
   },
   "overrides": {
     "font-awesome": {
@@ -34,8 +32,7 @@
     "bootstrap": {
       "main": [
         "less/bootstrap.less",
-        "dist/js/bootstrap.js",
-        "dist/fonts/*"
+        "dist/js/bootstrap.js"
       ]
     },
     "moment": {

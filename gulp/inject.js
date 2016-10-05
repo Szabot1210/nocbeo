@@ -9,16 +9,6 @@ var wiredep = require('wiredep').stream;
 module.exports = function(options) {
   gulp.task('constants', function() {
     return gulp.src(options.src + '/app/**/app.constant.js')
-      .pipe($.replace('##API_URL##', options.apiUrl))
-      .pipe($.replace('##MQTT_URL##', options.mqttUrl))
-      .pipe($.replace('##MQTT_TOPIC_PREFIX##', options.mqttTopicPrefix))
-      .pipe($.replace('##STORAGE_PREFIX##', options.storagePrefix))
-      .pipe($.replace('##DEFAULT_LANGUAGE##', options.defaultLanguage))
-      .pipe($.replace('##APP_ID##', options.appId))
-      .pipe($.replace('##PLAY_STORE_URL##', options.playStoreUrl))
-      .pipe($.replace('##APPLE_STORE_URL##', options.appleStoreUrl))
-      .pipe($.replace('##FACEBOOK_CLIENT_ID##', options.facebookClientId))
-      .pipe($.replace('##GOOGLE_CLIENT_ID##', options.googleClientId))
       .pipe(gulp.dest(options.tmp + '/serve'));
   });
 
