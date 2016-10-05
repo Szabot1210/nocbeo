@@ -3,6 +3,9 @@ node_js:
   - "4"
 addons:
   ssh_known_hosts: szadam.hu
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install sshpass
 install:
   - npm install
   - npm install -g gulp
@@ -14,6 +17,6 @@ script:
 deploy:
   provider: script
   skip_cleanup: true
-  script: rsync -r --delete-after $TRAVIS_BUILD_DIR/dist $RSYNC_USER@$HOST:$RSYNC_FOLDER
+  script: sshpass -p '$RSYNC_PASSWORD' rsync -r --delete-after $TRAVIS_BUILD_DIR/dist $RSYNC_USER@$HOST:$RSYNC_FOLDER
   on:
     branch: master
