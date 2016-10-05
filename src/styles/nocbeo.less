@@ -1,0 +1,212 @@
+#nocbeo-table-container {
+  margin-bottom: 0;
+  border: 2px solid #ddd;
+  border-top: none;
+
+  .ibox-content {
+    position: relative;
+    overflow: hidden;
+    height: 900px;
+    height: 80vh;
+    height: calc(~"100vh - 180px");
+
+    @topHeight: 70px;
+    @leftWidth: 150px;
+
+    //.nocbeo-fixed-left {
+    //  position: absolute;
+    //  left: 0;
+    //  top: 0;
+    //  width: @leftWidth;
+    //  background-color: #fff;
+    //
+    //  box-shadow: 10px 0 10px -10px rgba(0, 0, 0, 0.3);
+    //
+    //  table {
+    //    table-layout: fixed;
+    //    margin-bottom: 0;
+    //    tbody {
+    //      td {
+    //        color: @branding-color-primary;
+    //        cursor: pointer;
+    //      }
+    //      td.group-row {
+    //        color: #fff;
+    //      }
+    //      td.group-row:hover {
+    //        background-color: darken(@branding-color-primary, 3%);
+    //      }
+    //      td span {
+    //        display: block;
+    //        width: 100%;
+    //        text-overflow: ellipsis;
+    //        white-space: nowrap;
+    //        overflow: hidden;
+    //      }
+    //      td.group-row {
+    //
+    //      }
+    //    }
+    //  }
+    //}
+
+    .nocbeo-side {
+      position: absolute;
+      left: 0;
+      top: 0;
+
+      width: @leftWidth;
+      height: 100%;
+      overflow: hidden;
+
+      #nocbeo-table-corner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        width: 100%;
+
+        table-layout: auto;
+      }
+
+      #nocbeo-table-side {
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding-top: @topHeight;
+        width: 100%;
+        height: 100%;
+
+        border-left: none;
+
+        tbody {
+          td {
+            color: @branding-color-primary;
+            cursor: pointer;
+          }
+          td.group-row {
+            color: #fff;
+          }
+          td.group-row:hover {
+            background-color: darken(@branding-color-primary, 3%);
+          }
+          td span {
+            width: 131px;
+            display: block;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+          }
+          td.group-row {
+
+          }
+        }
+      }
+    }
+
+    .nocbeo-content {
+      padding-top: @topHeight;
+      position: relative;
+      margin-left: @leftWidth;
+      height: 100%;
+
+      #nocbeo-table-header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      #nocbeo-table-data-container {
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+
+        .nocbeo-table {
+          tbody {
+            tr td {
+              min-width: 60px;
+              max-width: 60px;
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+
+    .group-row {
+      text-align: center;
+      background-color: @branding-color-primary;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .day-field {
+      min-width: 60px;
+      max-width: 60px;
+      text-align: center;
+    }
+    .day-selector {
+      color: @branding-color-primary;
+      cursor: pointer;
+    }
+
+
+    .nocbeo-table {
+      //margin-left: @leftWidth;
+      width: auto;
+      table-layout: fixed;
+
+      thead {
+      }
+
+      tbody {
+        tr:first-child {
+          td {
+            border-top: none;
+          }
+        }
+      }
+
+      //thead tr th:first-child,
+      //tbody tr td:first-child {
+      //  min-width: @leftWidth;
+      //  max-width: @leftWidth;
+      //}
+
+      tr {
+        td {
+          span {
+
+          }
+        }
+
+        .weekend {
+          background-color: lighten(#F5F5F6, 0%);
+        }
+
+        &:hover .weekend {
+          background-color: darken(#F5F5F6, 1.5%);
+        }
+
+        &:nth-child(odd) .weekend {
+          background-color: darken(#F5F5F6, 2.5%);
+        }
+
+        &:nth-child(odd):hover .weekend {
+          background-color: darken(#F5F5F6, 4%);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  #nocbeo-table-container {
+    .ibox-content {
+      height: calc(~"100vh - 130px");
+    }
+  }
+}

@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-lg-12">
+    <panel no-content="true" class="m-b-none">
+      <div name="heading">
+        SNOC {{ monthCtrl.prev.from.format('YYYY') }} {{monthCtrl.month.label}}
+      </div>
+      <div name="controls">
+        <a class="text-primary " role="button"
+           ng-if="monthCtrl.prev"
+           ui-sref="root.month.index({csvName: monthCtrl.prev.dataFile})">
+          <i class="fa fa-backward m-r-xs"></i> {{ monthCtrl.prev.from.format('MMMM') }}
+        </a>
+        <span ng-if="monthCtrl.prev && monthCtrl.next" class="m-l-xs">|</span>
+        <a class="text-primary " role="button"
+           ng-if="monthCtrl.next"
+           ui-sref="root.month.index({csvName: monthCtrl.next.dataFile})">
+          {{ monthCtrl.next.from.format('MMMM') }} <i class="fa fa-forward m-l-xs"></i>
+        </a>
+      </div>
+      <div name="content"></div>
+    </panel>
+  </div>
+
+  <div class="col-lg-12" ng-if="monthCtrl.data">
+    <section id="nocbeo-table-container" class="ibox">
+      <div class="ibox-content no-padding">
+        <month-table month="monthCtrl.month" data="monthCtrl.data"></month-table>
+      </div>
+    </section>
+  </div>
+</div>

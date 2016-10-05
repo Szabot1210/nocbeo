@@ -1,0 +1,15 @@
+<div class="ibox float-e-margins" ng-multi-transclude-controller>
+    <div class="ibox-title">
+        <h5 ng-multi-transclude="heading">
+            <a ng-click="toggle()" class="pointer" title="{{ heading | translate }}">{{ heading | translate }}</a>
+        </h5>
+        <div class="ibox-tools">
+            <span ng-multi-transclude="controls"></span>
+            <a class="collapse-link" ng-click="toggle()" class="pointer" ng-show="collapsible">
+                <i class="fa fa-fw" ng-class="{'fa-chevron-up': open, 'fa-chevron-down' : !open}"></i>
+            </a>
+        </div>
+    </div>
+    <div class="ibox-content" ng-show="!noContent && (open || !collapsible)" ng-multi-transclude="content"></div>
+    <div class="ibox-footer" ng-multi-transclude="footer" ng-show="hasFooter"></div>
+</div>

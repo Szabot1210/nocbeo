@@ -1,0 +1,362 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&lang=en");
+
+body {
+  overflow-y: hidden;
+}
+
+#wrapper {
+  height: 100%;
+
+  #page-wrapper {
+    min-height: 100%;
+    //height: 100%;
+
+    .wrapper-content {
+      padding-bottom: 90px;
+    }
+  }
+
+  #page-wrapper.without-sidebar {
+    margin-left: 0;
+  }
+}
+
+.center {
+  text-align: center;
+}
+
+.main-container {
+  border-top: 1px solid #FFFFFF;
+}
+
+.has-footer {
+  max-height: calc(~'100% - 54px') !important;
+}
+
+.image-preview {
+  max-width: 50px;
+  max-height: 50px;
+}
+
+.main-content {
+  position: relative;
+  float: left;
+  width: 100%-@side-menu-width;
+  height: 100%;
+
+  &.full-width {
+    width: 100%;
+  }
+}
+
+.form-horizontal .form-group {
+  margin-bottom: 0;
+}
+
+.footer-form {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  padding: 10px 20px;
+  background-color: @brand-primary;
+  z-index: 100;
+  width: 100%;
+
+  label {
+    color: white;
+    line-height: 30px;
+    margin-bottom: 0;
+  }
+
+  .form-group {
+    margin: 0 15px;
+    max-width: 50%;
+
+    select {
+      max-width: 85%;
+    }
+  }
+
+  .form-control:focus, .single-line:focus {
+    border-color: #e5e6e7 !important;
+  }
+
+  span.label {
+    font-size: 100%;
+    border-right: 1px solid white;
+    padding: 10px 20px;
+  }
+
+  .btn-success {
+    background-color: #fff;
+  }
+  .btn-success:hover {
+    background-color: #1c84c6;
+    color: #fff;
+  }
+  .btn-success:focus,
+  .btn-success:active {
+    background-color: #1a7bb9;
+  }
+
+  h4 {
+    padding: 0;
+    float: left;
+    margin: 0;
+    line-height: 30px;
+    font-size: 1.3em;
+    color: #fff;
+  }
+}
+
+.table > tbody > tr > td {
+  vertical-align: middle;
+}
+
+.table > tbody > tr.active {
+  td {
+    font-weight: bold;
+  }
+}
+
+.middle-box.loginscreen {
+  padding-top: 0;
+
+  .logo-placeholder {
+    img {
+      width: 150px;
+      margin-bottom: 15px;
+    }
+  }
+}
+
+.audio-resource-container {
+  span {
+    position: relative;
+    bottom: 9px;
+  }
+}
+
+.form-horizontal {
+  .form-group {
+    ui-date-time-picker {
+      .input-group-addon {
+        padding: 0 10px;
+      }
+    }
+  }
+}
+
+.text-branding {
+  color: @branding-color-primary;
+}
+
+.text-branding-alt {
+  color: @branding-color-alt;
+}
+
+.btn-branding {
+  background-color: @branding-color-primary;
+  border-color: @branding-color-primary;
+  color: #FFFFFF;
+}
+
+.btn-branding:hover, .btn-branding:focus, .btn-branding:active, .btn-branding.active, .open .dropdown-toggle.btn-branding {
+  background-color: darken(@branding-color-primary, 3%);
+  border-color: darken(@branding-color-primary, 3%);
+  color: #FFFFFF;
+}
+
+.btn-branding:active, .btn-branding.active, .open .dropdown-toggle.btn-branding {
+  background: darken(@branding-color-primary, 6%);
+}
+
+.btn-branding.disabled, .btn-branding.disabled:hover, .btn-branding.disabled:focus, .btn-branding.disabled:active, .btn-branding.disabled.active, .btn-branding[disabled], .btn-branding[disabled]:hover, .btn-branding[disabled]:focus, .btn-branding[disabled]:active, .btn-branding.active[disabled], fieldset[disabled] .btn-branding, fieldset[disabled] .btn-branding:hover, fieldset[disabled] .btn-branding:focus, fieldset[disabled] .btn-branding:active, fieldset[disabled] .btn-branding.active {
+  background-color: lighten(@branding-color-primary, 4%);
+  border-color: lighten(@branding-color-primary, 4%);
+}
+
+.badge-branding {
+  background-color: @branding-color-primary;
+  color: #FFFFFF;
+}
+
+.multiselect-parent {
+  .btn {
+    background-color: @branding-color-primary !important;
+  }
+}
+
+.text-branding {
+  color: @branding-color-primary !important;
+}
+
+#toast-container > .toast:before {
+  line-height: 35px;
+}
+
+pre {
+  color: #676a6c;
+}
+
+.file-box {
+
+  .icon {
+    position: relative;
+    .fa {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .info {
+    .pull-right {
+      margin-top: 3px;
+    }
+  }
+}
+
+.plain-language-picker {
+  position: absolute;
+  right: 1.5em;
+  top: 1.5em;
+
+  .open > .dropdown-menu {
+    position: absolute;
+    right: 0;
+    top: 150%;
+    left: initial;
+
+    li > a {
+      padding: 3px 6px;
+    }
+  }
+}
+
+.testimonials {
+  position: relative;
+
+  a {
+    color: #fff;
+  }
+
+  color: #fff;
+  font-size: 1.2em;
+
+  .background-image {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    filter: blur(1px) saturate(0.2);
+    opacity: 0.7;
+  }
+}
+
+.public-store {
+  background: #fff;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  #store {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.top-navigation .navbar-brand {
+  background-color: @brand-primary;
+}
+
+.faq-item {
+  //border-bottom: 2px solid #ddd;
+  //
+  //&:first-child {
+  //  border-top: 2px solid #ddd;
+  //}
+
+  .faq-question {
+    color: @brand-primary;
+  }
+  .faq-question:hover {
+    color: darken(@brand-primary, 10%);
+  }
+}
+
+.top-navigation .nav > li a:hover,
+.top-navigation .nav > li a:focus {
+  color: @brand-primary;
+}
+
+#wrapper #page-wrapper .wrapper-content {
+  padding: 20px 10px 30px 10px;
+
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  .icon {
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top:0;
+    padding: 2px;
+    img {
+      height: 100%;
+    }
+  }
+}
+
+.navbar-toggle {
+  background-color: @branding-color-primary;
+  margin-top: 2.5px;
+  margin-right: 15px;
+  margin-bottom: 2.5px;
+  padding: 3px 10px;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+
+  #wrapper {
+    .navbar {
+      min-height: 25px;
+      height: 25px;
+
+      .navbar-brand {
+        padding: 8px 10px 8px 20px;
+        line-height: 19px;
+        font-size: 15px;
+        height: 35px;
+      }
+    }
+
+    #page-wrapper {
+      padding: 0 5px 0 5px;
+
+      .wrapper {
+        padding: 10px 5px 10px 5px;
+      }
+
+      .footer {
+        padding: 5px 10px;
+        font-size: 0.75em;
+      }
+    }
+  }
+}

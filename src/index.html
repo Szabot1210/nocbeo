@@ -1,0 +1,153 @@
+<!doctype html>
+<html ng-app="nocbeo">
+<head>
+  <meta charset="utf-8">
+  <title>SNOC Telekom</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+  <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+  <!-- bower:css -->
+  <!-- run `gulp inject` to automatically populate bower styles dependencies -->
+  <!-- endbower -->
+  <link rel="stylesheet" href="styles/vendor.css">
+  <!-- endbuild -->
+
+  <!-- build:css({.tmp/serve,src}) styles/app.css -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="styles/index.css">
+  <!-- css files will be automatically insert here -->
+  <!-- endinject -->
+  <!-- endbuild -->
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/images/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/images/favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#E20074">
+  <meta name="msapplication-TileImage" content="/images/favicon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#E20074">
+
+  <style>
+    html, body {
+      height: 100%;
+      /*font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+      background-color: #E20074;
+    }
+
+    [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+      display: none !important;
+    }
+
+    body[ng-cloak] {
+      display: block !important;
+      overflow: hidden;
+    }
+
+    [ng-cloak].splash {
+      display: block !important;
+    }
+
+    /* some naive styles for a splash page */
+    .splash {
+      -webkit-transform-style: preserve-3d;
+      -moz-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+      display: none;
+      width: 400px;
+      max-width: 400px;
+      z-index: 100;
+      margin: 0 auto;
+      animation-name: fadeInDown;
+      -webkit-animation-duration: 1s;
+      animation-duration: 1s;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+      z-index: 100;
+      text-align: center;
+      height: 100%;;
+      color: #e6e6e6;
+    }
+
+    .splash > div {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .splash .logo-name {
+      color: #e6e6e6;
+      font-weight: 800;
+      letter-spacing: -10px;
+      margin-bottom: 0px;
+      font-size: 90px;
+    }
+  </style>
+</head>
+<body ng-controller="MainCtrl as main" ng-cloak class="top-navigation">
+<!--[if lt IE 10]>
+<p class="browsehappy">You are using an
+  <strong>outdated</strong> browser. Please
+  <a href="http://browsehappy.com/">upgrade your browser</a>
+  to improve your experience.</p>
+<![endif]-->
+
+<div class="splash" ng-cloak>
+  <div>
+    <div>
+      <h1 class="logo-name">Telekom SNOC</h1>
+    </div>
+    <h3 style="margin-top:30px;">Loading ...</h3>
+  </div>
+</div>
+
+<div id="wrapper">
+  <div id="page-wrapper" class="gray-bg">
+    <div class="row border-bottom white-bg">
+      <nav class="navbar navbar-static-top" role="navigation"
+           role="navigation" ui-view="navigation"></nav>
+    </div>
+    <div class="wrapper wrapper-content" ui-view="container">
+
+    </div>
+    <div class="footer">
+      <div>
+        <strong>SNOC</strong> Szolgálati beosztás - Telekom © 2016
+      </div>
+      <div class="icon">
+        <img src="images/Deutsche_Telekom.svg" alt="Telekom" />
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- build:js(src) scripts/vendor.js -->
+<!-- bower:js -->
+<!-- run `gulp inject` to automatically populate bower script dependencies -->
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
+<!-- inject:js -->
+<!-- js files will be automatically insert here -->
+<!-- endinject -->
+
+<!-- inject:partials -->
+<!-- angular templates will be automatically converted in js and inserted here -->
+<!-- endinject -->
+<!-- endbuild -->
+
+</body>
+</html>

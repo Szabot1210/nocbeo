@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <panel heading="'SNOC szolgálati beosztás 2016'" no-content="true">
+        <div name="content"></div>
+      </panel>
+    </div>
+  </div>
+  <div ng-repeat="month in homeCtrl.months" class="faq-item">
+    <a data-toggle="collapse" ui-sref="root.month.index({csvName: month.dataFile})" class="faq-question">
+      {{ month.label }}
+    </a>
+  </div>
+</div>

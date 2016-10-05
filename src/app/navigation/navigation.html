@@ -1,0 +1,30 @@
+<div class="navbar-header">
+  <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse"
+          class="navbar-toggle collapsed" type="button">
+    <i class="fa fa-reorder"></i>
+  </button>
+  <a ui-sref="root.home.index" class="navbar-brand">Telekom - SNOC</a>
+</div>
+<div class="navbar-collapse collapse" id="navbar" aria-expanded="false" style="height: 1px;">
+  <ul class="nav navbar-nav">
+    <li>
+      <a ui-sref="root.month.index({csvName: navigation.current.dataFile})">Aktuális hónap</a>
+    </li>
+    <li class="dropdown" uib-dropdown>
+      <a role="button"
+         ui-sref="root.home.index"
+         class="dropdown-toggle"
+         uib-dropdown-toggle>
+        Hónapok
+        <span class="caret"></span>
+      </a>
+      <ul role="menu"
+          class="dropdown-menu"
+          uib-dropdown-menu>
+        <li ng-repeat="month in navigation.months">
+          <a ui-sref="root.month.index({csvName: month.dataFile})" ng-bind="month.label"></a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

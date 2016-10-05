@@ -1,0 +1,19 @@
+<table id="nocbeo-table-header" class="table table-striped table-hover table-bordered nocbeo-table m-b-none">
+  <thead>
+  <tr>
+    <th ng-repeat="day in ctrl.dayList"
+        class="day-field day-selector"
+        ng-class="{'weekend': ctrl.isWeekend(day)}"
+        ng-click="ctrl.selectDay($index)">
+      {{ $index + 1}}
+    </th>
+  </tr>
+  <tr>
+    <th ng-repeat="day in ctrl.dayList"
+        ng-class="{'weekend': ctrl.isWeekend(day)}"
+        class="day-field day-name">
+      {{ day.format('dd') }}
+    </th>
+  </tr>
+  </thead>
+</table>

@@ -1,0 +1,4 @@
+<a ng-click="onClick()">
+    <i class="fa " ng-class="{'fa-sort-asc' : name === by && !reverse,  'fa-sort-desc' : name===by && reverse, 'fa-sort': name !== by, 'text-success': name === by }"></i>
+    &nbsp;<span ng-transclude ng-class="{'text-success': name === by}"></span>
+</a>

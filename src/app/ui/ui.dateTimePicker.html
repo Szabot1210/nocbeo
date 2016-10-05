@@ -1,0 +1,11 @@
+<div class="dropdown" uib-dropdown is-open="status.isOpen">
+    <a class="dropdown-toggle" id="episodeEnddate" role="button" uib-dropdown-toggle>
+        <div class="input-group">
+            <input name="episodeEnddate" type="datetime-local" class="form-control" ng-model="value" ng-required="required" />
+            <span class="input-group-addon" ><i class="glyphicon glyphicon-calendar"></i></span>
+        </div>
+    </a>
+    <ul class="dropdown-menu" role="menu">
+        <datetimepicker ng-model="value" on-set-time="close()"  />
+    </ul>
+</div>

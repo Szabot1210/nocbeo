@@ -1,0 +1,17 @@
+<div class="placeholder-container clearfix">
+
+  <ul class="placeholder-list todo-list">
+    <li ng-repeat="placeholder in placeholders">
+      <div class="input-group">
+        <div class="input-group-addon">{{$index}}</div>
+        <input class="form-control" type="text" placeholder="Type to replace placeholder"
+               ng-model="realTexts[placeholder]"/>
+      </div>
+    </li>
+  </ul>
+
+  <div class="device-preview">
+    <div ng-bind-html="text" class="placeholder-preview"></div>
+  </div>
+
+</div>
