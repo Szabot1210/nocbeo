@@ -1,4 +1,3 @@
-/* global moment */
 (function () {
   'use strict';
 
@@ -20,7 +19,7 @@
       $rootScope.months = months;
       monthHelper.current().then(function(current) {
         $rootScope.current = current;
-      })
+      });
     });
     $state.go('root.home.index');
   }

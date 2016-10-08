@@ -25,5 +25,5 @@
       hideEasing: 'linear',
       showMethod: 'fadeIn',
       hideMethod: 'fadeOut'
-    })
+    });
 })();

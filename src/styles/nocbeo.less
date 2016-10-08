@@ -120,6 +120,11 @@
       table-layout: fixed;
 
       thead {
+        tr {
+          th.yesterday {
+            border-right: 3px solid @branding-color-primary;
+          }
+        }
       }
 
       tbody {
@@ -144,13 +149,12 @@
             background-color: lighten(@branding-color-primary, 10%);
           }
         }
+        tr {
+          td.yesterday {
+            border-right: 3px solid @branding-color-primary;
+          }
+        }
       }
-
-      //thead tr th:first-child,
-      //tbody tr td:first-child {
-      //  min-width: @leftWidth;
-      //  max-width: @leftWidth;
-      //}
 
       tr {
         td {

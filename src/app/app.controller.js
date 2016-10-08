@@ -8,8 +8,7 @@
   /*
    * @ngInject
    */
-  function MainCtrl($scope) {
-    var vm = this;
+  function MainCtrl() {
 
   }
 
