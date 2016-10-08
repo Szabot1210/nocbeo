@@ -20,6 +20,6 @@
             controller: 'HomeIndexCtrl as homeCtrl'
           }
         }
-      })
+      });
   }
 })();

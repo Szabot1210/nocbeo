@@ -8,13 +8,19 @@
   /*
    * @ngInject
    */
-  function MonthIndexCtrl($stateParams, monthHelper, _) {
+  function MonthIndexCtrl($stateParams, monthHelper, deviceDetector) {
     var vm = this;
 
     vm.meta = null;
     vm.month = null;
     vm.prevMonth = null;
     vm.nextMonth = null;
+    vm.showPast = true;
+    vm.setPast = setPast;
+
+    function setPast(value) {
+      vm.showPast = value;
+    }
 
     function get() {
       monthHelper.get($stateParams.csvName)
@@ -36,10 +42,13 @@
             vm.data = data;
             vm.meta = vm.data.splice(0, 3);
           });
-        })
+        });
     }
 
     function init() {
+      if (!deviceDetector.isDesktop()) {
+        vm.showPast = false;
+      }
       get();
     }
 

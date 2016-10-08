@@ -19,7 +19,7 @@
         vm.months = months;
         monthHelper.current().then(function(current) {
           vm.current = current;
-        })
+        });
       });
     }
 

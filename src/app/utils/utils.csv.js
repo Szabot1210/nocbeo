@@ -39,7 +39,7 @@
           download: true,
           header: header || false,
           error: function (err, file, inputElem, reason) {
-            toastr.error('Failed to download: ' + filename + ', Reason: ' + reason);
+            toastr.error('Failed to download: ' + filePath + ', Reason: ' + reason);
             reject(err);
           },
           complete: function (result) {

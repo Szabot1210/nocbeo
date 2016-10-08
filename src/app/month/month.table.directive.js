@@ -8,19 +8,20 @@
   /*
    * @ngInject
    */
-  function monthTableDirective(_, $timeout, $window) {
+  function monthTableDirective(_, $timeout, $window, moment, $) {
     return {
       restrict: 'E',
-      scope: {
+      bindToController: {
         month: '=',
-        data: '='
+        data: '=',
+        showPast: '=?'
       },
       templateUrl: 'app/month/month.table.directive.html',
       controllerAs: 'ctrl',
       controller: function ($scope) {
         var vm = this;
-        vm.month = $scope.month;
         vm.dayList = [];
+        vm.todayIndex = new Date().getDate();
 
         vm.daysInMonth = function () {
           if (!vm.month) {
@@ -37,8 +38,8 @@
           }
 
           var date = moment(vm.month.from);
-          _.times(vm.daysInMonth(), function (n) {
-            days.push(moment(date));  // your format
+          _.times(vm.daysInMonth(), function () {
+            days.push(moment(date));
             date = date.add(1, 'days');
           });
           return days;
@@ -63,12 +64,12 @@
         };
 
         function init() {
-          vm.month = $scope.month;
-          vm.data = $scope.data;
           vm.dayList = vm.daysInMonthList();
         }
 
-        $scope.$watch('month + data', function (newValue) {
+        $scope.$watch(function() {
+          return vm.data;
+        }, function (newValue) {
           if (!newValue) {
             return;
           }
@@ -84,15 +85,34 @@
           $window.requestAnimationFrame(function () {
             headerTable.css('transform', 'translateX(' + (event.currentTarget.scrollLeft * -1) + 'px)');
             sideTable.css('transform', 'translateY(' + (event.currentTarget.scrollTop * -1) + 'px)');
-          })
+          });
         }
 
-        $timeout(function () {
+        function rowHover(source, target) {
+          function findRow(element) {
+            return $(target.find('tbody > tr').get($(element).index()));
+          }
+
+          source.find('tr').hover(function () {
+            $(this).addClass('hover');
+            findRow(this).addClass('hover');
+          }, function () {
+            $(this).removeClass('hover');
+            findRow(this).removeClass('hover');
+          });
+        }
+
+        function init() {
           headerTable = $('#nocbeo-table-header-container > table');
           sideTable = $('#nocbeo-table-side-container > table');
           tableContainer = $element.find('#nocbeo-table-data-container');
           tableContainer.scroll(onScroll);
-        }, 1000);
+
+          rowHover(tableContainer, sideTable);
+          rowHover(sideTable, tableContainer);
+        }
+
+        $timeout(init, 1000);
       }
     };
   }

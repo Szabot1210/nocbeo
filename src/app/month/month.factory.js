@@ -8,7 +8,7 @@
   /*
    * @ngInject
    */
-  function monthHelperFactory(csvHelper, $q, csvConfig, _) {
+  function monthHelperFactory(csvHelper, $q, csvConfig, _, moment) {
     var self = {
       months: null,
       current: null

@@ -6,9 +6,9 @@
     </td>
 
     <td ng-repeat="item in row track by $index"
-        ng-class="{'weekend': ctrl.isWeekendByIndex($index)}"
+        ng-class="{'weekend': ctrl.isWeekendByIndex($index), 'yesterday': ctrl.todayIndex - 1  === $index}"
         ng-bind="item"
-        ng-if="!ctrl.isGroupRow(row) && $index > 0"></td>
+        ng-if="!ctrl.isGroupRow(row) && $index > 0 && (ctrl.showPast || ctrl.todayIndex - 1 < $index)"></td>
   </tr>
   </tbody>
 </table>
