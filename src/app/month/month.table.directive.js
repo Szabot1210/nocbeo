@@ -87,12 +87,29 @@
           })
         }
 
-        $timeout(function () {
+        function rowHover(source, target) {
+          function findRow() {
+            return $(target.find('tbody > tr').get($(this).index()))
+          }
+          source.find('tr').hover(function() {
+            $(this).addClass('hover');
+            findRow.call(this).addClass('hover');
+          }, function() {
+            $(this).removeClass('hover');
+            findRow.call(this).removeClass('hover');
+          });
+        }
+
+        function init() {
           headerTable = $('#nocbeo-table-header-container > table');
           sideTable = $('#nocbeo-table-side-container > table');
           tableContainer = $element.find('#nocbeo-table-data-container');
           tableContainer.scroll(onScroll);
-        }, 1000);
+          rowHover(tableContainer, sideTable);
+          rowHover(sideTable, tableContainer);
+        }
+
+        $timeout(init, 1000);
       }
     };
   }
