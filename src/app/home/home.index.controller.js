@@ -8,11 +8,12 @@
   /*
    * @ngInject
    */
-  function HomeIndexCtrl(monthHelper) {
+  function HomeIndexCtrl(monthHelper, moment) {
     var vm = this;
 
     vm.months = [];
     vm.current = null;
+    vm.year = moment().year();
 
     function get() {
       monthHelper.list().then(function(months) {

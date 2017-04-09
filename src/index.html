@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>SNOC Telekom</title>
   <meta name="description" content="">
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
   <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
@@ -113,8 +113,10 @@
 </div>
 
 <div id="wrapper">
-  <div id="page-wrapper" class="gray-bg">
-    <div class="row border-bottom white-bg">
+  <div id="page-wrapper"
+       class="gray-bg"
+       data-state="{{ $root.$state.current.name}}">
+    <div id="top-navigation" class="row border-bottom white-bg">
       <nav class="navbar navbar-static-top" role="navigation"
            role="navigation" ui-view="navigation"></nav>
     </div>
@@ -123,7 +125,7 @@
     </div>
     <div class="footer">
       <div>
-        <strong>SNOC</strong> Szolgálati beosztás - Telekom © 2016
+        <strong>SNOC</strong> Szolgálati beosztás - Telekom © {{ $root.year }}
       </div>
       <div class="icon">
         <img src="images/Deutsche_Telekom.svg" alt="Telekom" />

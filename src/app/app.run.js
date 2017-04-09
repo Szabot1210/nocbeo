@@ -7,6 +7,7 @@
 
   function run(moment, toastr, toastrOptions, pace, $rootScope, monthHelper, $state) {
     moment.locale('hu');
+    $rootScope.$state = $state;
 
     toastr.options = toastrOptions;
 
@@ -21,6 +22,8 @@
         $rootScope.current = current;
       });
     });
+
+    $rootScope.year = moment().year();
     $state.go('root.home.index');
   }
 })();
