@@ -1,21 +1,23 @@
 <div class="row">
   <div class="col-lg-12">
-    <panel no-content="true" class="m-b-none">
+    <panel no-content="true" ng-swipe-right="$state.go('root.home.index')" class="m-b-none">
       <div name="heading">
         SNOC {{ monthCtrl.prev.from.format('YYYY') }} {{monthCtrl.month.label}}
       </div>
       <div name="controls">
-        <a ng-click="monthCtrl.setPast(false)"
-           ng-show="monthCtrl.showPast" class="text-primary"
-           uib-tooltip="Elmúlt napok elrejtése">
+        <span ng-if="monthCtrl.isCurrent">
+          <a ng-click="monthCtrl.setPast(false)"
+             ng-show="monthCtrl.showPast" class="text-primary"
+             uib-tooltip="Elmúlt napok elrejtése">
           <i class="fa fa-eye"></i>
-        </a>
-        <a ng-click="monthCtrl.setPast(true)"
-           ng-show="!monthCtrl.showPast" class="text-primary"
-           uib-tooltip="Elmúlt napok megjelenítése">
-          <i class="fa fa-eye-slash"></i>
-        </a>
-        <span class="m-l-xs">|</span>
+          </a>
+          <a ng-click="monthCtrl.setPast(true)"
+             ng-show="!monthCtrl.showPast" class="text-primary"
+             uib-tooltip="Elmúlt napok megjelenítése">
+            <i class="fa fa-eye-slash"></i>
+          </a>
+          <span class="m-l-xs">|</span>
+        </span>
         <a class="text-primary " role="button"
            ng-if="monthCtrl.prev"
            ui-sref="root.month.index({csvName: monthCtrl.prev.dataFile})">

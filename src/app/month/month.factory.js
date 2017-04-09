@@ -50,10 +50,18 @@
     function current() {
       return $q(function (resolve, reject) {
         list().then(function (months) {
-          //TODO
-          resolve(months[0]);
+          resolve(_.find(months, function (month) {
+            if (!moment.isMoment(month.from) || !moment.isMoment(month.to)) {
+              return false;
+            }
+            return moment().isBetween(month.from, month.to);
+          }));
         }, reject);
       });
+    }
+
+    function isCurrent(month) {
+      return moment().isBetween(month.from, month.to);
     }
 
     function prev(csvName) {
@@ -92,6 +100,7 @@
       get: get,
       list: list,
       current: current,
+      isCurrent: isCurrent,
       prev: prev,
       next: next,
       data: data

@@ -16,6 +16,7 @@
     vm.prevMonth = null;
     vm.nextMonth = null;
     vm.showPast = true;
+    vm.isCurrent = null;
     vm.setPast = setPast;
 
     function setPast(value) {
@@ -26,6 +27,7 @@
       monthHelper.get($stateParams.csvName)
         .then(function (month) {
           vm.month = month;
+          vm.isCurrent = monthHelper.isCurrent(vm.month);
         })
         .then(function () {
           monthHelper.next($stateParams.csvName).then(function (next) {
@@ -46,7 +48,7 @@
     }
 
     function init() {
-      if (!deviceDetector.isDesktop()) {
+      if (vm.isCurrent && !deviceDetector.isDesktop()) {
         vm.showPast = false;
       }
       get();
