@@ -13,6 +13,7 @@
       restrict: 'E',
       bindToController: {
         month: '=',
+        meta: '=',
         data: '=',
         showPast: '=?'
       },
@@ -21,6 +22,7 @@
       controller: function ($scope) {
         var vm = this;
         vm.dayList = [];
+        vm.meta = {};
         vm.todayIndex = -1; //new Date().getDate();
         vm.isCurrent = false;
 

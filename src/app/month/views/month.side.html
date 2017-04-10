@@ -2,7 +2,8 @@
   <tbody>
   <tr ng-repeat="row in ctrl.data  track by $index">
     <td ng-class="{'group-row': ctrl.isGroupRow(row)}">
-      <span ng-bind="row[0]"></span>
+      <span ng-if="ctrl.isGroupRow(row)" ng-bind="row[0]"></span>
+      <span ng-if="!ctrl.isGroupRow(row)" ng-bind="row[1]"></span>
     </td>
   </tr>
   </tbody>

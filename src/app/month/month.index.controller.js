@@ -8,7 +8,7 @@
   /*
    * @ngInject
    */
-  function MonthIndexCtrl($stateParams, monthHelper, deviceDetector) {
+  function MonthIndexCtrl($stateParams, monthHelper, deviceDetector, _) {
     var vm = this;
 
     vm.meta = null;
@@ -42,7 +42,7 @@
         .then(function () {
           monthHelper.data($stateParams.csvName).then(function (data) {
             vm.data = data;
-            vm.meta = vm.data.splice(0, 3);
+            vm.meta = _.head(vm.data.splice(0, 1));
           });
         });
     }
