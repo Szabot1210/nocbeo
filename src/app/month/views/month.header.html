@@ -12,7 +12,7 @@
   <tr>
     <th ng-repeat="day in ctrl.dayList"
         ng-class="{'weekend': ctrl.isWeekend(day), 'yesterday': ctrl.todayIndex - 2  === $index}"
-        ng-if="ctrl.showPast || ctrl.todayIndex - 2 < $index"
+        ng-if="ctrl.showPast || ctrl.todayIndex - 3 < $index"
         class="day-field day-name">
       {{ day.format('dd') }}
     </th>
