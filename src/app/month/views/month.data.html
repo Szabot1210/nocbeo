@@ -9,7 +9,7 @@
         ng-class="{'weekend': ctrl.isWeekendByIndex($index - 1), 'yesterday': ctrl.todayIndex === $index}"
         class="{{ ctrl.cellColor(item) }}"
         ng-if="!ctrl.isGroupRow(row) && $index > 1 && (ctrl.showPast || ctrl.todayIndex - 1 < $index) && (ctrl.dayList.length > ($index - 2))">
-      <span ng-if="item !== 'sarga'" ng-bind="item"></span>
+      <span ng-if="item !== 'sarga'" ng-bind="item"></span>&nbsp;
     </td>
   </tr>
   </tbody>
