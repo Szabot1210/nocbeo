@@ -53,11 +53,13 @@
         tbody {
           td {
             color: @branding-color-primary;
-            cursor: pointer;
             padding: 4px 8px;
           }
           td.group-row {
             color: #fff;
+            a {
+              color: #fff;
+            }
           }
           td span {
             width: 132px;
@@ -111,6 +113,20 @@
       background-color: @branding-color-primary;
       color: #fff;
       font-weight: bold;
+      a {
+        color: #fff;
+      }
+    }
+
+    .reset-row {
+      border-top: 2px solid @branding-color-primary;
+
+      td {
+        a {
+          padding: 10px 0px;
+          display: inline-block;
+        }
+      }
     }
 
     .day-field {

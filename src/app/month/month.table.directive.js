@@ -22,6 +22,7 @@
       controller: function ($scope) {
         var vm = this;
         vm.dayList = [];
+        vm.filteredData = [];
         vm.meta = {};
         vm.todayIndex = -1; //new Date().getDate();
         vm.isCurrent = false;
@@ -56,7 +57,6 @@
         }
 
         vm.cellColor = function (item) {
-
           if (isCell(['F', 'G22', 'G194'], item)) {
             return 'blue-text';
           }
@@ -98,7 +98,36 @@
           return false;
         };
 
+        vm.resetData = function () {
+          vm.filteredData = vm.data;
+        };
+
+        vm.selectGroup = function ($index) {
+          if (vm.data.length !== vm.filteredData.length) {
+            return vm.resetData();
+          }
+
+          var selectedgGroupData = vm.data.slice($index, vm.data.length);
+          var lastGroupMember = _.findIndex(selectedgGroupData.slice(1, vm.data.length), function (row) {
+            return row.length <= 3;
+          });
+          vm.filteredData = selectedgGroupData.slice(0, lastGroupMember + 1);
+        };
+
+        vm.selectRow = function($index) {
+          if (vm.filteredData.length === 1) {
+            return vm.resetData();
+          }
+
+          if(!vm.data[$index]) {
+            return;
+          }
+
+          vm.filteredData = [vm.data[$index]];
+        };
+
         function init() {
+          vm.filteredData = vm.data;
           vm.dayList = vm.daysInMonthList();
           vm.isCurrent = monthHelper.isCurrent(vm.month);
           if (vm.isCurrent) {
