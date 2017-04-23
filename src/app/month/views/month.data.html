@@ -1,15 +1,23 @@
 <table id="nocbeo-table-data" class="table table-striped table-hover table-bordered nocbeo-table m-b-none">
   <tbody>
-  <tr ng-repeat="row in ctrl.data  track by $index">
+  <tr ng-repeat="row in ctrl.filteredData  track by $index">
     <td ng-if="ctrl.isGroupRow(row)" class="group-row" colspan="{{ ctrl.dayList.length }}">
-      {{ row[0] }}
+      <a ng-click="ctrl.selectGroup($index)" ng-bind="row[0]"></a>
     </td>
 
     <td ng-repeat="item in row track by $index"
-        ng-class="{'weekend': ctrl.isWeekendByIndex($index - 1), 'yesterday': ctrl.todayIndex === $index}"
+        ng-class="{'weekend': ctrl.isWeekendByIndex($index - 2), 'yesterday': ctrl.todayIndex === $index, 'otherMonth': ctrl.isOtherMonth(ctrl.dayList[$index - 2])}"
         class="{{ ctrl.cellColor(item) }}"
         ng-if="!ctrl.isGroupRow(row) && $index > 1 && (ctrl.showPast || ctrl.todayIndex - 1 < $index) && (ctrl.dayList.length > ($index - 2))">
-      <span ng-if="item !== 'sarga'" ng-bind="item"></span>&nbsp;
+      <span ng-if="item !== 'sarga'" ng-bind="item"></span>
+    </td>
+  </tr>
+  <tr ng-if="ctrl.filteredData.length !== ctrl.data.length" class="reset-row">
+    <td colspan="{{ ctrl.dayList.length }}">
+      <a ng-click="ctrl.resetData()">
+        <i class="fa fa-times-circle fa-fw"></i>
+        Összes megjelenítése
+      </a>
     </td>
   </tr>
   </tbody>

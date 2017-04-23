@@ -53,11 +53,13 @@
         tbody {
           td {
             color: @branding-color-primary;
-            cursor: pointer;
             padding: 4px 8px;
           }
           td.group-row {
             color: #fff;
+            a {
+              color: #fff;
+            }
           }
           td span {
             width: 132px;
@@ -111,6 +113,20 @@
       background-color: @branding-color-primary;
       color: #fff;
       font-weight: bold;
+      a {
+        color: #fff;
+      }
+    }
+
+    .reset-row {
+      border-top: 2px solid @branding-color-primary;
+
+      td {
+        a {
+          padding: 10px 0px;
+          display: inline-block;
+        }
+      }
     }
 
     .day-field {
@@ -123,7 +139,6 @@
       cursor: pointer;
     }
 
-
     .nocbeo-table {
       //margin-left: @leftWidth;
       width: auto;
@@ -131,6 +146,9 @@
 
       thead {
         tr {
+          th.otherMonth {
+            color: lighten(@text-color, 20%);
+          }
           th.yesterday {
             border-right: 3px solid @branding-color-primary;
           }
@@ -161,11 +179,14 @@
             &.yesterday {
               border-right: 3px solid @branding-color-primary;
             }
-            &.blue {
-              color: #fff;
-            }
             &.blue-text {
               color: @blue;
+            }
+            &.otherMonth {
+              color: lighten(@text-color, 20%);
+            }
+            &.blue {
+              color: #fff;
             }
             &.dark-blue {
               color: #fff;
@@ -180,6 +201,13 @@
             }
             &.green {
               color: #fff;
+            }
+            &.otherMonth.green,
+            &.otherMonth.pink,
+            &.otherMonth.brown,
+            &.otherMonth.dark-blue,
+            &.otherMonth.blue {
+              color: darken(#fff, 10%);
             }
           }
         }
@@ -188,93 +216,195 @@
           &.hover {
             td {
               background-color: #f5f5f5;
+              @otherValue: 5%;
+
               &.blue {
                 background-color: darken(@blue, 7.5%);
               }
+              &.blue.otherMonth {
+                background-color: lighten(@blue, @otherValue);
+              }
+
               &.dark-blue {
                 background-color: darken(@darkBlue, 7.5%);
               }
+              &.dark-blue.otherMonth {
+                background-color: lighten(@darkBlue, @otherValue);
+              }
+
               &.yellow {
                 background-color: darken(@yellow, 7.5%);
               }
+              &.yellow.otherMonth {
+                background-color: lighten(@yellow, @otherValue);
+              }
+
               &.brown {
                 background-color: darken(@brown, 7.5%);
               }
+              &.brown.otherMonth {
+                background-color: lighten(@brown, @otherValue);
+              }
+
               &.pink {
                 background-color: darken(@pink, 7.5%);
               }
+              &.pink.otherMonth {
+                background-color: lighten(@pink, @otherValue);
+              }
+
               &.green {
                 background-color: darken(@green, 7.5%);
               }
+              &.green.otherMonth {
+                background-color: lighten(@green, @otherValue);
+              }
+
             }
           }
 
           td {
+            @otherValue: 15%;
+
             &.blue {
               background-color: @blue;
             }
+            &.blue.otherMonth {
+              background-color: lighten(@blue, @otherValue);
+            }
+
             &.blue-text {
             }
+
             &.dark-blue {
               background-color: @darkBlue;
             }
+            &.blue.otherMonth {
+              background-color: lighten(@darkBlue, @otherValue);
+            }
+
             &.yellow {
               background-color: @yellow;
             }
+            &.yellow.otherMonth {
+              background-color: lighten(@yellow, @otherValue);
+            }
+
             &.brown {
               background-color: @brown;
             }
+            &.brown.otherMonth {
+              background-color: lighten(@brown, @otherValue);
+            }
+
             &.pink {
               background-color: @pink;
             }
+            &.pink.otherMonth {
+              background-color: lighten(@pink, @otherValue);
+            }
+
             &.green {
               background-color: @green;
+            }
+            &.green.otherMonth {
+              background-color: lighten(@green, @otherValue);
             }
           }
         }
         tr:nth-child(even) {
           &.hover {
+            @otherValue: 20%;
+
             td {
               background-color: #f5f5f5;
               &.blue {
                 background-color: darken(@blue, 7.5%);
               }
+              &.blue.otherMonth {
+                background-color: lighten(@blue, @otherValue);
+              }
+
               &.dark-blue {
                 background-color: darken(@darkBlue, 7.5%);
               }
+              &.dark-blue.otherMonth {
+                background-color: lighten(@darkBlue, @otherValue);
+              }
+
               &.yellow {
                 background-color: darken(@yellow, 7.5%);
               }
+              &.yellow.otherMonth {
+                background-color: lighten(@yellow, @otherValue);
+              }
+
               &.brown {
                 background-color: darken(@brown, 7.5%);
               }
+              &.brown.otherMonth {
+                background-color: lighten(@brown, @otherValue);
+              }
+
               &.pink {
                 background-color: darken(@pink, 7.5%);
               }
+              &.pink.otherMonth {
+                background-color: lighten(@pink, @otherValue);
+              }
+
               &.green {
                 background-color: darken(@green, 7.5%);
+              }
+              .green {
+                background-color: lighten(@green, @otherValue);
               }
             }
           }
 
           td {
+            @otherValue: 25%;
+
             &.blue {
               background-color: darken(@blue, 2.5%);
             }
+            &.blue.otherMonth {
+              background-color: lighten(@blue, @otherValue);
+            }
+
             &.dark-blue {
               background-color: darken(@darkBlue, 2.5%);
             }
+            &.dark-blue.otherMonth {
+              background-color: lighten(@darkBlue, @otherValue);
+            }
+
             &.yellow {
               background-color: darken(@yellow, 2.5%);
             }
+            &.yellow.otherMonth {
+              background-color: lighten(@yellow, @otherValue);
+            }
+
             &.brown {
               background-color: darken(@brown, 2.5%);
             }
+            &.brown.otherMonth {
+              background-color: lighten(@brown, @otherValue);
+            }
+
             &.pink {
               background-color: darken(@pink, 2.5%);
             }
+            &.pink.otherMonth {
+              background-color: lighten(@pink, @otherValue);
+            }
+
             &.green {
               background-color: darken(@green, 2.5%);
+            }
+            &.green.otherMonth {
+              background-color: lighten(@green, @otherValue);
             }
           }
         }
@@ -317,7 +447,7 @@
           max-width: @colW;
         }
       }
-      .nocbeo-content #nocbeo-table-data-container .nocbeo-table  {
+      .nocbeo-content #nocbeo-table-data-container .nocbeo-table {
         tbody tr td {
           min-width: @colW;
           max-width: @colW;
@@ -327,8 +457,7 @@
 
       .nocbeo-side {
         width: @sideW;
-        #nocbeo-table-side tbody td
-        {
+        #nocbeo-table-side tbody td {
           padding: 8px 2px;
           span {
             width: 94px;
@@ -360,7 +489,7 @@
   }
 }
 
-@media screen and (min-width:320px) and (max-width:768px) and (orientation:landscape) {
+@media screen and (min-width: 320px) and (max-width: 768px) and (orientation: landscape) {
   #page-wrapper[data-state='root.month.index'] {
     #top-navigation {
       display: none;
@@ -370,6 +499,7 @@
       display: none;
     }
   }
+
   #nocbeo-table-container {
     .ibox-content {
       height: calc(~"100vh - 60px");
