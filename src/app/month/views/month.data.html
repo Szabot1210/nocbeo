@@ -6,10 +6,10 @@
     </td>
 
     <td ng-repeat="item in row track by $index"
-        ng-class="{'weekend': ctrl.isWeekendByIndex($index - 1), 'yesterday': ctrl.todayIndex === $index}"
+        ng-class="{'weekend': ctrl.isWeekendByIndex($index - 2), 'yesterday': ctrl.todayIndex === $index, 'otherMonth': ctrl.isOtherMonth(ctrl.dayList[$index - 2])}"
         class="{{ ctrl.cellColor(item) }}"
         ng-if="!ctrl.isGroupRow(row) && $index > 1 && (ctrl.showPast || ctrl.todayIndex - 1 < $index) && (ctrl.dayList.length > ($index - 2))">
-      <span ng-if="item !== 'sarga'" ng-bind="item"></span>&nbsp;
+      <span ng-if="item !== 'sarga'" ng-bind="item"></span>
     </td>
   </tr>
   <tr ng-if="ctrl.filteredData.length !== ctrl.data.length" class="reset-row">

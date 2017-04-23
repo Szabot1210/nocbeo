@@ -42,7 +42,12 @@
           }
 
           var date = moment(vm.month.from);
-          _.times(vm.daysInMonth(), function () {
+          days = [
+            moment(date).add(-3, 'days'),
+            moment(date).add(-2, 'days'),
+            moment(date).add(-1, 'days')
+          ];
+          _.times(vm.daysInMonth() + 3, function () {
             days.push(moment(date));
             date = date.add(1, 'days');
           });
@@ -96,6 +101,10 @@
             return true;
           }
           return false;
+        };
+
+        vm.isOtherMonth = function(day) {
+          return moment(day).isBefore(vm.month.from) || moment(moment(vm.month.from).add(1, 'M').add(-1, 'h')).isBefore(day);
         };
 
         vm.resetData = function () {
