@@ -4,7 +4,7 @@
     <th ng-repeat="day in ctrl.dayList"
         class="day-field day-selector"
         ng-class="{'weekend': ctrl.isWeekend(day), 'yesterday': ctrl.todayIndex - 2  === $index}"
-        ng-if="ctrl.showPast || ctrl.todayIndex - 2 < $index"
+        ng-if="ctrl.showPast || ctrl.todayIndex - 3 < $index"
         ng-click="ctrl.selectDay($index)">
       {{ $index + 1}}
     </th>
