@@ -91,7 +91,7 @@
         };
 
         vm.isWeekendByIndex = function (index) {
-          return vm.isWeekend(moment(vm.month.from).add(index - 1, 'd'));
+          return vm.isWeekend(moment(vm.month.from).add(index - 3, 'd'));
         };
 
         vm.isGroupRow = function (row) {

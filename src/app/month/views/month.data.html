@@ -6,9 +6,9 @@
     </td>
 
     <td ng-repeat="item in row track by $index"
-        ng-class="{'weekend': ctrl.isWeekendByIndex($index - 2), 'yesterday': ctrl.todayIndex === $index, 'otherMonth': ctrl.isOtherMonth(ctrl.dayList[$index - 2])}"
+        ng-class="{'weekend': ctrl.isWeekendByIndex($index - 2), 'yesterday': ctrl.todayIndex + 3 === $index, 'otherMonth': ctrl.isOtherMonth(ctrl.dayList[$index - 2])}"
         class="{{ ctrl.cellColor(item) }}"
-        ng-if="!ctrl.isGroupRow(row) && $index > 1 && (ctrl.showPast || ctrl.todayIndex - 1 < $index) && (ctrl.dayList.length > ($index - 2))">
+        ng-if="!ctrl.isGroupRow(row) && $index > 1 && (ctrl.showPast || ctrl.todayIndex + 2 < $index) && (ctrl.dayList.length > ($index - 2))">
       <span ng-if="item !== 'sarga'" ng-bind="item"></span>
     </td>
   </tr>

@@ -3,16 +3,16 @@
   <tr>
     <th ng-repeat="day in ctrl.dayList"
         class="day-field day-selector"
-        ng-class="{'weekend': ctrl.isWeekend(day), 'yesterday': ctrl.todayIndex - 2  === $index, 'otherMonth': ctrl.isOtherMonth(day)}"
-        ng-if="ctrl.showPast || ctrl.todayIndex - 3 < $index"
+        ng-class="{'weekend': ctrl.isWeekend(day), 'yesterday': ctrl.todayIndex + 1 === $index, 'otherMonth': ctrl.isOtherMonth(day)}"
+        ng-if="ctrl.showPast || ctrl.todayIndex < $index"
         ng-click="ctrl.selectDay($index)">
       {{ day.format('D') }}
     </th>
   </tr>
   <tr>
     <th ng-repeat="day in ctrl.dayList"
-        ng-class="{'weekend': ctrl.isWeekend(day), 'yesterday': ctrl.todayIndex - 2  === $index, 'otherMonth': ctrl.isOtherMonth(day)}"
-        ng-if="ctrl.showPast || ctrl.todayIndex - 3 < $index"
+        ng-class="{'weekend': ctrl.isWeekend(day), 'yesterday': ctrl.todayIndex + 1 === $index, 'otherMonth': ctrl.isOtherMonth(day)}"
+        ng-if="ctrl.showPast || ctrl.todayIndex < $index"
         class="day-field day-name">
       {{ day.format('dd') }}
     </th>
