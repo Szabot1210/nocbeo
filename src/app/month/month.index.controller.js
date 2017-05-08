@@ -74,17 +74,17 @@
               }
 
               var processedRow = row.slice(0, 2);
-              if(vm.prevMonth) {
-                processedRow = processedRow.concat(vm.prevMonth[index].slice(vm.prevMonth[index].length - 3, vm.prevMonth[index]));
-              }
-              processedRow = row.concat(row.slice(2, row.length));
-              if(vm.nextMonth) {
-                processedRow = processedRow.concat(vm.nextMonth[index].slice(0, 3));
-              }
+              // if(vm.prevMonth) {
+              //   processedRow = processedRow.concat(vm.prevMonth[index].slice(vm.prevMonth[index].length - 3, vm.prevMonth[index]));
+              // }
+              processedRow = processedRow.concat(row.slice(2, row.length));
+              // if(vm.nextMonth) {
+              //   processedRow = processedRow.concat(vm.nextMonth[index].slice(0, 3));
+              // }
               return processedRow;
             });
             vm.data = data;
-            vm.meta = _.head(vm.data.splice(0, 1));
+            vm.meta = _.head(vm.data.slice(0, 1));
           });
         });
     }
