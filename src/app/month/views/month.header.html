@@ -1,21 +1,21 @@
 <table id="nocbeo-table-header" class="table table-striped table-hover table-bordered nocbeo-table m-b-none">
   <thead>
   <tr>
-    <th ng-repeat="day in ctrl.header"
+    <th ng-repeat="day in ctrl.header track by $index"
         class="day-field day-selector"
-        ng-class="{'weekend': day.weekend, 'yesterday': day.yesterday, 'otherMonth': day.otherMonth}"
-        ng-if="ctrl.showPast || !day.isPast"
+        ng-class="::{'weekend': day.weekend, 'yesterday': day.yesterday, 'otherMonth': day.otherMonth}"
+        ng-show="ctrl.showPast || !day.isPast"
         ng-click="ctrl.selectDay($index, day)">
-      {{ day.dayNum }}
+      {{ ::day.dayNum }}
     </th>
   </tr>
   <tr>
-    <th ng-repeat="day in ctrl.header"
-        ng-class="{'weekend': day.weekend, 'yesterday': day.yesterday, 'otherMonth': day.otherMonth}"
-        ng-if="ctrl.showPast || !day.isPast"
+    <th ng-repeat="day in ctrl.header track by $index"
+        ng-class="::{'weekend': day.weekend, 'yesterday': day.yesterday, 'otherMonth': day.otherMonth}"
+        ng-show="ctrl.showPast || !day.isPast"
         ng-click="ctrl.selectDay($index, day)"
         class="day-field day-name">
-      {{ day.dayName }}
+      {{ ::day.dayName }}
     </th>
   </tr>
   </thead>

@@ -1,19 +1,19 @@
 <table id="nocbeo-table-data" class="table table-striped table-hover table-bordered nocbeo-table m-b-none">
   <tbody>
-  <tr ng-repeat="row in ctrl.filteredData  track by $index">
-    <td ng-if="row.type === 'group'" class="group-row" colspan="{{ ctrl.header.length }}">
-      <a ng-click="ctrl.selectGroup($index, row)" ng-bind="row.label"></a>
+  <tr ng-repeat="row in ctrl.filteredData track by row.id">
+    <td sly-show="::(row.type === 'group')" class="group-row" colspan="{{ ::ctrl.header.length }}">
+      <a ng-click="ctrl.selectGroup($index, row)">{{::row.label}}</a>
     </td>
 
-    <td ng-repeat="day in row.data track by $index"
-        ng-if="row.type === 'data' && (ctrl.showPast || !day.isPast)"
-        ng-class="{'weekend': day.weekend, 'yesterday': day.yesterday, 'otherMonth': day.otherMonth}"
-        class="{{ day.cssClass }}">
-      <span ng-if="day.label !== 'sarga'" ng-bind="day.label"></span>
+    <td sly-repeat="day in row.data"
+        sly-show="(row.type === 'data' && (ctrl.showPast || !day.isPast))"
+        ng-class="::{'weekend': day.weekend, 'yesterday': day.yesterday, 'otherMonth': day.otherMonth}"
+        class="{{ ::day.cssClass }}">
+      {{::day.label}}
     </td>
   </tr>
-  <tr ng-if="ctrl.filteredData.length !== ctrl.data.length" class="reset-row">
-    <td colspan="{{ ctrl.header.length }}">
+  <tr ng-show="ctrl.filteredData.length !== ctrl.data.length" class="reset-row">
+    <td colspan="{{ ::ctrl.header.length }}">
       <a ng-click="ctrl.resetData()">
         <i class="fa fa-times-circle fa-fw"></i>
         Összes megjelenítése

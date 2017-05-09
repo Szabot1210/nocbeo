@@ -1,6 +1,6 @@
 <ul class="breadcrumb">
     <li ng-repeat="breadcrumb in breadcrumbs" >
-        <a ng-if="breadcrumb.state && !$last" ui-sref="{{breadcrumb.state}}">{{breadcrumb.title | translate}}</a>
-        <span class="active" ng-show="$last">{{breadcrumb.title | translate}}</span>
+        <a ng-if="breadcrumb.state && !$last" ui-sref="{{breadcrumb.state}}">{{breadcrumb.title}}</a>
+        <span class="active" ng-show="$last">{{breadcrumb.title}}</span>
     </li>
 </ul>

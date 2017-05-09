@@ -23,11 +23,20 @@
       vm.showPast = value;
     }
 
+    function logTime(start, label) {
+      var now = performance.now();
+      console.debug(label + (performance.now() - start) + ' ms');
+      return now;
+    }
+
     function get() {
+      var start = performance.now();
+      console.debug('Loading month data ...');
       monthHelper.get($stateParams.csvName)
         .then(function (month) {
           vm.month = month;
           vm.isCurrent = monthHelper.isCurrent(vm.month);
+          start = logTime(start, 'Current month loaded, ');
         })
         .then(function () {
           return $q(function (resolve) {
@@ -38,6 +47,7 @@
               }
               monthHelper.data(vm.next.dataFile).then(function (data) {
                 vm.nextMonth = data;
+                start = logTime(start, 'Next month loaded, ');
                 resolve();
               });
             });
@@ -51,6 +61,7 @@
                 resolve();
               }
               monthHelper.data(vm.prev.dataFile).then(function (data) {
+                start = logTime(start, 'Prev month loaded, ');
                 vm.prevMonth = data;
                 resolve();
               });
@@ -83,8 +94,13 @@
               // }
               return processedRow;
             });
-            vm.data = data;
-            vm.meta = _.head(vm.data.slice(0, 1));
+
+            start = logTime(start, 'Data loaded, ');
+
+            vm.data = monthHelper.buildTableData(vm.month, data);
+            vm.meta = _.head(data.slice(0, 1));
+
+            start = logTime(start, 'Data processed, ');
           });
         });
     }

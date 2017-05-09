@@ -87,8 +87,6 @@
         };
 
         function init() {
-          console.log('init');
-          vm.data = monthHelper.buildTableData(vm.month, vm.data);
           vm.header = _.find(vm.data, {type: 'data'}).data;
           vm.meta = _.find(vm.data, {type: 'meta'});
           vm.filteredData = vm.data;
@@ -96,16 +94,18 @@
           if (vm.isCurrent) {
             vm.todayIndex = new Date().getDate();
           }
+          console.debug('TableDirective.init() finished');
         }
 
-        $scope.$watch(function () {
+        $scope.$watchCollection(function () {
           return vm.data;
-        }, function (newValue) {
+        }, function (newValue, oldValue) {
           if (!newValue) {
             return;
           }
+
           init();
-        }, true);
+        });
       },
       link: function ($scope, $element) {
         var headerTable = {};

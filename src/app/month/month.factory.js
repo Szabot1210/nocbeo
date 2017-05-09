@@ -135,13 +135,22 @@
     }
 
     function buildTableData(month, rows) {
+      if (!rows || !rows.length) {
+        return [];
+      }
+
       var processedRows = [];
       _.forEach(rows, function (row, index) {
+        if (!_.isArray(row)) {
+          return;
+        }
+
         if (!index) {
           return processedRows.push({
+            id: index,
             type: 'meta',
             month: row[0],
-            label: row[1].replace('Frissítette ', ''),
+            label: (row[1] || '').replace('Frissítette ', ''),
             date: row[2]
           });
         }
@@ -149,20 +158,21 @@
         if (row.length < 3) {
           return processedRows.push({
             type: 'group',
-            label: row[0]
+            label: row[0],
+            id: index
           });
         }
 
         var dataRow = [];
         var pastCompare = moment().add(-2, 'days');
-        _.forEach(row.slice(2, row.length), function(data, index) {
+        _.forEach(row.slice(2, row.length), function (data, index) {
           var day = month.from.clone().add(index, 'days');
           dataRow.push({
             index: index,
             yesterday: isYesterday(day),
-            isPast:  day.isBefore(pastCompare),
+            isPast: day.isBefore(pastCompare),
             weekend: isWeekend(day),
-            label: data,
+            label: (data || '').replace('sarga', ''),
             cssClass: cellColor(data),
             dayNum: day.format('D'),
             dayName: day.format('dd'),
