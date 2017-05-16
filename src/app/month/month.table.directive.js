@@ -83,7 +83,7 @@
             return;
           }
 
-          vm.filteredData = [vm.data[$index]];
+          vm.filteredData = [vm.filteredData[$index]];
         };
 
         function init() {

@@ -172,7 +172,7 @@
             yesterday: isYesterday(day),
             isPast: day.isBefore(pastCompare),
             weekend: isWeekend(day),
-            label: (data || '').replace('sarga', ''),
+            label: (data || '&nbsp').replace('sarga', '&nbsp'),
             cssClass: cellColor(data),
             dayNum: day.format('D'),
             dayName: day.format('dd'),

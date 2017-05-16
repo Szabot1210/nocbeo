@@ -42,14 +42,7 @@
           return $q(function (resolve) {
             monthHelper.next($stateParams.csvName).then(function (next) {
               vm.next = next;
-              if(!vm.next) {
-                resolve();
-              }
-              monthHelper.data(vm.next.dataFile).then(function (data) {
-                vm.nextMonth = data;
-                start = logTime(start, 'Next month loaded, ');
-                resolve();
-              });
+              resolve();
             });
           });
         })
@@ -57,21 +50,14 @@
           return $q(function (resolve) {
             monthHelper.prev($stateParams.csvName).then(function (prev) {
               vm.prev = prev;
-              if(!vm.prev) {
-                resolve();
-              }
-              monthHelper.data(vm.prev.dataFile).then(function (data) {
-                start = logTime(start, 'Prev month loaded, ');
-                vm.prevMonth = data;
-                resolve();
-              });
+              resolve();
             });
           });
         })
         .then(function () {
           monthHelper.data($stateParams.csvName).then(function (data) {
             var maxCols = vm.month.from.daysInMonth() + 2;
-            data = _.map(data, function (row, index) {
+            data = _.map(data, function (row) {
               if (row.length < 5) {
                 return row;
               }
@@ -85,13 +71,7 @@
               }
 
               var processedRow = row.slice(0, 2);
-              // if(vm.prevMonth) {
-              //   processedRow = processedRow.concat(vm.prevMonth[index].slice(vm.prevMonth[index].length - 3, vm.prevMonth[index]));
-              // }
               processedRow = processedRow.concat(row.slice(2, row.length));
-              // if(vm.nextMonth) {
-              //   processedRow = processedRow.concat(vm.nextMonth[index].slice(0, 3));
-              // }
               return processedRow;
             });
 

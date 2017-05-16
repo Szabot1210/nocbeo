@@ -8,8 +8,9 @@
     <td sly-repeat="day in row.data"
         sly-show="(row.type === 'data' && (ctrl.showPast || !day.isPast))"
         ng-class="::{'weekend': day.weekend, 'yesterday': day.yesterday, 'otherMonth': day.otherMonth}"
-        class="{{ ::day.cssClass }}">
-      {{::day.label}}
+        class="{{ ::day.cssClass }}"
+        ng-bind-html="::day.label">
+
     </td>
   </tr>
   <tr ng-show="ctrl.filteredData.length !== ctrl.data.length" class="reset-row">
