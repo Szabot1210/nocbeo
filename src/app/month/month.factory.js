@@ -14,6 +14,42 @@
       current: null
     };
 
+    function isWeekend(day) {
+      var d = day.day();
+      return d === 6 || d === 0;
+    }
+
+    function isCell(options, item) {
+      item = item.toUpperCase();
+      return _.some(options, function (option) {
+        return _.startsWith(item, option);
+      });
+    }
+
+    function cellColor(item) {
+      if (isCell(['F', 'G22', 'G194'], item)) {
+        return 'blue-text';
+      }
+      if (isCell(['G'], item)) {
+        return 'brown';
+      }
+      if (isCell(['BK'], item)) {
+        return 'orange';
+      }
+      if (isCell(['S', 'TSZ', 'RSZ', 'SZ'], item)) {
+        return 'yellow';
+      }
+      if (isCell(['K24'], item)) {
+        return 'dark-blue';
+      }
+      if (isCell(['K'], item)) {
+        return 'blue';
+      }
+      if (isCell(['B'], item)) {
+        return 'green';
+      }
+    };
+
     function get(csvName) {
       return $q(function (resolve, reject) {
         list().then(function (months) {
@@ -94,6 +130,65 @@
       });
     }
 
+    function isYesterday(day) {
+      return moment().subtract(1, 'days').startOf('day').isSame(day, 'd');
+    }
+
+    function buildTableData(month, rows) {
+      if (!rows || !rows.length) {
+        return [];
+      }
+
+      var processedRows = [];
+      _.forEach(rows, function (row, index) {
+        if (!_.isArray(row)) {
+          return;
+        }
+
+        if (!index) {
+          return processedRows.push({
+            id: index,
+            type: 'meta',
+            month: row[0],
+            label: (row[1] || '').replace('Frissítette ', ''),
+            date: row[2]
+          });
+        }
+
+        if (row.length < 3) {
+          return processedRows.push({
+            type: 'group',
+            label: row[0],
+            id: index
+          });
+        }
+
+        var dataRow = [];
+        var pastCompare = moment().add(-2, 'days');
+        _.forEach(row.slice(2, row.length), function (data, index) {
+          var day = month.from.clone().add(index, 'days');
+          dataRow.push({
+            index: index,
+            yesterday: isYesterday(day),
+            isPast: day.isBefore(pastCompare),
+            weekend: isWeekend(day),
+            label: (data || '&nbsp').replace('sarga', '&nbsp'),
+            cssClass: cellColor(data),
+            dayNum: day.format('D'),
+            dayName: day.format('dd'),
+            otherMonth: false
+          });
+        });
+        return processedRows.push({
+          type: 'data',
+          id: row[0],
+          user: row[1],
+          data: dataRow
+        });
+      });
+      return processedRows;
+    }
+
     // Interface
     return {
       months: self.months,
@@ -103,7 +198,8 @@
       isCurrent: isCurrent,
       prev: prev,
       next: next,
-      data: data
+      data: data,
+      buildTableData: buildTableData
     };
   }
 

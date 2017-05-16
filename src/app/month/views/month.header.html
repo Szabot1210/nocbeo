@@ -1,20 +1,21 @@
 <table id="nocbeo-table-header" class="table table-striped table-hover table-bordered nocbeo-table m-b-none">
   <thead>
   <tr>
-    <th ng-repeat="day in ctrl.dayList"
+    <th ng-repeat="day in ctrl.header track by $index"
         class="day-field day-selector"
-        ng-class="{'weekend': ctrl.isWeekend(day), 'yesterday': ctrl.todayIndex + 1 === $index, 'otherMonth': ctrl.isOtherMonth(day)}"
-        ng-if="ctrl.showPast || ctrl.todayIndex < $index"
-        ng-click="ctrl.selectDay($index)">
-      {{ day.format('D') }}
+        ng-class="::{'weekend': day.weekend, 'yesterday': day.yesterday, 'otherMonth': day.otherMonth}"
+        ng-show="ctrl.showPast || !day.isPast"
+        ng-click="ctrl.selectDay($index, day)">
+      {{ ::day.dayNum }}
     </th>
   </tr>
   <tr>
-    <th ng-repeat="day in ctrl.dayList"
-        ng-class="{'weekend': ctrl.isWeekend(day), 'yesterday': ctrl.todayIndex + 1 === $index, 'otherMonth': ctrl.isOtherMonth(day)}"
-        ng-if="ctrl.showPast || ctrl.todayIndex < $index"
+    <th ng-repeat="day in ctrl.header track by $index"
+        ng-class="::{'weekend': day.weekend, 'yesterday': day.yesterday, 'otherMonth': day.otherMonth}"
+        ng-show="ctrl.showPast || !day.isPast"
+        ng-click="ctrl.selectDay($index, day)"
         class="day-field day-name">
-      {{ day.format('dd') }}
+      {{ ::day.dayName }}
     </th>
   </tr>
   </thead>

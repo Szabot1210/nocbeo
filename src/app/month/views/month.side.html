@@ -1,16 +1,16 @@
 <table id="nocbeo-table-side" class="table table-striped table-hover table-bordered nocbeo-table m-b-none">
   <tbody>
-  <tr ng-repeat="row in ctrl.filteredData  track by $index">
-    <td ng-class="{'group-row': ctrl.isGroupRow(row)}">
-      <span ng-if="ctrl.isGroupRow(row)">
-        <a ng-click="ctrl.selectGroup($index)" ng-bind="row[0]" title="Csoport kiválasztása"></a>
+  <tr ng-repeat="row in ctrl.filteredData track by row.id" ng-show="::(row.type !== 'meta')">
+    <td ng-class="{'group-row': row.type === 'group'}">
+      <span ng-show="row.type === 'group'">
+        <a ng-click="ctrl.selectGroup($index)" title="Csoport kiválasztása">{{ ::row.label }}</a>
       </span>
-      <span ng-if="!ctrl.isGroupRow(row)">
-        <a ng-click="ctrl.selectRow($index)" ng-bind="row[1]" title="{{ row[1] }} kiválasztása"></a>
+      <span ng-show="row.type === 'data'">
+        <a ng-click="ctrl.selectRow($index, row)" title="{{ ::row.user }} kiválasztása">{{ ::row.user }}</a>
       </span>
     </td>
   </tr>
-  <tr ng-if="ctrl.filteredData.length !== ctrl.data.length" class="reset-row">
+  <tr ng-show="ctrl.filteredData.length !== ctrl.data.length" class="reset-row">
     <td>
       <a ng-click="ctrl.resetData()">
         <i class="fa fa-times-circle fa-fw"></i>
