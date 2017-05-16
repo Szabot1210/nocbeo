@@ -23,23 +23,26 @@
       vm.showPast = value;
     }
 
+    function logTime(start, label) {
+      var now = performance.now();
+      console.debug(label + (performance.now() - start) + ' ms');
+      return now;
+    }
+
     function get() {
+      var start = performance.now();
+      console.debug('Loading month data ...');
       monthHelper.get($stateParams.csvName)
         .then(function (month) {
           vm.month = month;
           vm.isCurrent = monthHelper.isCurrent(vm.month);
+          start = logTime(start, 'Current month loaded, ');
         })
         .then(function () {
           return $q(function (resolve) {
             monthHelper.next($stateParams.csvName).then(function (next) {
               vm.next = next;
-              if(!vm.next) {
-                resolve();
-              }
-              monthHelper.data(vm.next.dataFile).then(function (data) {
-                vm.nextMonth = data;
-                resolve();
-              });
+              resolve();
             });
           });
         })
@@ -47,20 +50,14 @@
           return $q(function (resolve) {
             monthHelper.prev($stateParams.csvName).then(function (prev) {
               vm.prev = prev;
-              if(!vm.prev) {
-                resolve();
-              }
-              monthHelper.data(vm.prev.dataFile).then(function (data) {
-                vm.prevMonth = data;
-                resolve();
-              });
+              resolve();
             });
           });
         })
         .then(function () {
           monthHelper.data($stateParams.csvName).then(function (data) {
             var maxCols = vm.month.from.daysInMonth() + 2;
-            data = _.map(data, function (row, index) {
+            data = _.map(data, function (row) {
               if (row.length < 5) {
                 return row;
               }
@@ -74,17 +71,16 @@
               }
 
               var processedRow = row.slice(0, 2);
-              if(vm.prevMonth) {
-                processedRow = processedRow.concat(vm.prevMonth[index].slice(vm.prevMonth[index].length - 3, vm.prevMonth[index]));
-              }
-              processedRow = row.concat(row.slice(2, row.length));
-              if(vm.nextMonth) {
-                processedRow = processedRow.concat(vm.nextMonth[index].slice(0, 3));
-              }
+              processedRow = processedRow.concat(row.slice(2, row.length));
               return processedRow;
             });
-            vm.data = data;
-            vm.meta = _.head(vm.data.splice(0, 1));
+
+            start = logTime(start, 'Data loaded, ');
+
+            vm.data = monthHelper.buildTableData(vm.month, data);
+            vm.meta = _.head(data.slice(0, 1));
+
+            start = logTime(start, 'Data processed, ');
           });
         });
     }

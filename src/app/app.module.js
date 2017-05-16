@@ -10,7 +10,7 @@
     'ngSanitize',
     'ng.deviceDetector',
     'ngTouch',
-    'pascalprecht.translate',
+    'sly',
 
     'nocbeo-utils',
     'nocbeo-ui',

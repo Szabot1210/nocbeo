@@ -20,8 +20,8 @@
     "angular-touch": "~1.5.8",
     "moment": "^2.15.1",
     "papaparse": "^4.1.2",
-    "angular-translate": "^2.12.1",
-    "holidays": "^1.0.1"
+    "holidays": "^1.0.1",
+    "scalyr": "^1.0.3"
   },
   "overrides": {
     "font-awesome": {

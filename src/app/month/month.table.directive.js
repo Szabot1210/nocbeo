@@ -24,7 +24,6 @@
         vm.dayList = [];
         vm.filteredData = [];
         vm.meta = {};
-        vm.todayIndex = -1; //new Date().getDate();
         vm.isCurrent = false;
 
         vm.daysInMonth = function () {
@@ -54,54 +53,6 @@
           return days;
         };
 
-        function isCell(options, item) {
-          item = item.toUpperCase();
-          return _.some(options, function (option) {
-            return _.startsWith(item, option);
-          });
-        }
-
-        vm.cellColor = function (item) {
-          if (isCell(['F', 'G22', 'G194'], item)) {
-            return 'blue-text';
-          }
-          if (isCell(['G'], item)) {
-            return 'brown';
-          }
-          if (isCell(['BK'], item)) {
-            return 'orange';
-          }
-          if (isCell(['S', 'TSZ', 'RSZ', 'SZ'], item)) {
-            return 'yellow';
-          }
-          if (isCell(['K24'], item)) {
-            return 'dark-blue';
-          }
-          if (isCell(['K'], item)) {
-            return 'blue';
-          }
-          if (isCell(['B'], item)) {
-            return 'green';
-          }
-        };
-
-        vm.isWeekend = function (day) {
-          var d = day.day();
-          return d === 6 || d === 0;
-        };
-
-        vm.isWeekendByIndex = function (index) {
-          return vm.isWeekend(moment(vm.month.from).add(index - 3, 'd'));
-        };
-
-        vm.isGroupRow = function (row) {
-          if (row[0] !== null && _.every(row, function (item, index) {
-              return index === 0 || item === '';
-            })) {
-            return true;
-          }
-          return false;
-        };
 
         vm.isOtherMonth = function(day) {
           return moment(day).isBefore(vm.month.from) || moment(moment(vm.month.from).add(1, 'M').add(-1, 'h')).isBefore(day);
@@ -118,7 +69,7 @@
 
           var selectedgGroupData = vm.data.slice($index, vm.data.length);
           var lastGroupMember = _.findIndex(selectedgGroupData.slice(1, vm.data.length), function (row) {
-            return row.length <= 3;
+            return !row.data;
           });
           vm.filteredData = selectedgGroupData.slice(0, lastGroupMember + 1);
         };
@@ -132,26 +83,29 @@
             return;
           }
 
-          vm.filteredData = [vm.data[$index]];
+          vm.filteredData = [vm.filteredData[$index]];
         };
 
         function init() {
+          vm.header = _.find(vm.data, {type: 'data'}).data;
+          vm.meta = _.find(vm.data, {type: 'meta'});
           vm.filteredData = vm.data;
-          vm.dayList = vm.daysInMonthList();
           vm.isCurrent = monthHelper.isCurrent(vm.month);
           if (vm.isCurrent) {
             vm.todayIndex = new Date().getDate();
           }
+          console.debug('TableDirective.init() finished');
         }
 
-        $scope.$watch(function () {
+        $scope.$watchCollection(function () {
           return vm.data;
-        }, function (newValue) {
+        }, function (newValue, oldValue) {
           if (!newValue) {
             return;
           }
+
           init();
-        }, true);
+        });
       },
       link: function ($scope, $element) {
         var headerTable = {};
