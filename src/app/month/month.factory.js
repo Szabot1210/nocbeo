@@ -8,7 +8,7 @@
   /*
    * @ngInject
    */
-  function monthHelperFactory(csvHelper, $q, csvConfig, _, moment) {
+  function monthHelperFactory(csvHelper, $q, csvConfig, _, moment, holidays) {
     var self = {
       months: null,
       current: null
@@ -17,6 +17,12 @@
     function isWeekend(day) {
       var d = day.day();
       return d === 6 || d === 0;
+    }
+
+    function isHoliday(day, holidays) {
+      return _.some(holidays, function (holiday) {
+        return day.dayOfYear() === holiday.day;
+      });
     }
 
     function isCell(options, item) {
@@ -53,11 +59,15 @@
     function get(csvName) {
       return $q(function (resolve, reject) {
         list().then(function (months) {
-          var m = _.find(months, {dataFile: csvName});
-          if (m) {
-            return resolve(m);
+          var month = _.find(months, {dataFile: csvName});
+          holidays.get(month.from.year()).then(function (holidays) {
+            month.holidays = holidays;
+            resolve(month);
+          });
+
+          if (!month) {
+            return reject();
           }
-          reject();
         });
       });
     }
@@ -86,12 +96,13 @@
     function current() {
       return $q(function (resolve, reject) {
         list().then(function (months) {
-          resolve(_.find(months, function (month) {
+          var currentMonth = _.find(months, function (month) {
             if (!moment.isMoment(month.from) || !moment.isMoment(month.to)) {
               return false;
             }
             return moment().isBetween(month.from, month.to);
-          }));
+          });
+          resolve(currentMonth);
         }, reject);
       });
     }
@@ -172,6 +183,7 @@
             yesterday: isYesterday(day),
             isPast: day.isBefore(pastCompare),
             weekend: isWeekend(day),
+            holiday: isHoliday(day, month.holidays),
             label: (data || '&nbsp').replace('sarga', '&nbsp'),
             cssClass: cellColor(data),
             dayNum: day.format('D'),

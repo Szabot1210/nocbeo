@@ -7,7 +7,7 @@
 
     <td sly-repeat="day in row.data"
         sly-show="(row.type === 'data' && (ctrl.showPast || !day.isPast))"
-        ng-class="::{'weekend': day.weekend, 'yesterday': day.yesterday, 'otherMonth': day.otherMonth}"
+        ng-class="::{'weekend': day.weekend, 'holiday': day.holiday, 'yesterday': day.yesterday, 'otherMonth': day.otherMonth}"
         class="{{ ::day.cssClass }}"
         ng-bind-html="::day.label">
 
