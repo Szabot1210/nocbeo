@@ -411,18 +411,22 @@
       }
 
       tr {
+        .holiday,
         .weekend {
           background-color: darken(#f5f5f5, 2.5%);
         }
 
+        &:hover .holiday,
         &:hover .weekend {
           background-color: darken(#f5f5f5, 3.5%);
         }
 
+        &:nth-child(odd) .holiday,
         &:nth-child(odd) .weekend {
           background-color: darken(#f5f5f5, 4.0%);
         }
 
+        &:nth-child(odd):hover .holiday,
         &:nth-child(odd):hover .weekend {
           background-color: darken(#f5f5f5, 5.0%);
         }

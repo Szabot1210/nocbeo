@@ -3,7 +3,7 @@
   <tr>
     <th ng-repeat="day in ctrl.header track by $index"
         class="day-field day-selector"
-        ng-class="::{'weekend': day.weekend, 'yesterday': day.yesterday, 'otherMonth': day.otherMonth}"
+        ng-class="::{'weekend': day.weekend, 'holiday': day.holiday, 'yesterday': day.yesterday, 'otherMonth': day.otherMonth}"
         ng-show="ctrl.showPast || !day.isPast"
         ng-click="ctrl.selectDay($index, day)">
       {{ ::day.dayNum }}
@@ -11,7 +11,7 @@
   </tr>
   <tr>
     <th ng-repeat="day in ctrl.header track by $index"
-        ng-class="::{'weekend': day.weekend, 'yesterday': day.yesterday, 'otherMonth': day.otherMonth}"
+        ng-class="::{'weekend': day.weekend, 'holiday': day.holiday, 'yesterday': day.yesterday, 'otherMonth': day.otherMonth}"
         ng-show="ctrl.showPast || !day.isPast"
         ng-click="ctrl.selectDay($index, day)"
         class="day-field day-name">
