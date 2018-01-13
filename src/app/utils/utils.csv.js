@@ -38,6 +38,7 @@
         papaparse.parse(filePath, {
           download: true,
           header: header || false,
+          skipEmptyLines: true,
           error: function (err, file, inputElem, reason) {
             toastr.error('Failed to download: ' + filePath + ', Reason: ' + reason);
             reject(err);

@@ -118,7 +118,7 @@
           if (i > 0) {
             return resolve(months[i - 1]);
           }
-          reject();
+            return resolve(months[0]);
         });
       });
     }
